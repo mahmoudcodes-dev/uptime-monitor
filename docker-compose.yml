@@ -1,0 +1,15 @@
+services:
+  monitor:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DB_PATH: /data/monitors.db
+    volumes:
+      - monitor-data:/data
+    restart: unless-stopped
+volumes:
+  monitor-data:
